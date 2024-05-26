@@ -10,6 +10,7 @@ public class ClientHandler implements Runnable {
     private String name;
     private Socket socket;
     private int port = 4900;
+    private DataInputStream in;
     Scanner scanner = new Scanner(System.in);
 
 
@@ -27,16 +28,14 @@ public class ClientHandler implements Runnable {
         System.out.println("welcome " + this.name + "\nEnter your message:");
         try {
             while (true) {
-                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-                String clientInput = scanner.nextLine();
-                out.writeUTF("\033[35m" + name + ":\033[0m " + clientInput);
-//                DataInputStream in = new DataInputStream(socket.getInputStream());
-//                System.out.println(in.readUTF());
-
+                    DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                    String clientInput = scanner.nextLine();
+                    out.writeUTF("\033[35m" + name + ":\033[0m " + clientInput);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
 
+
+        }
     }
 }

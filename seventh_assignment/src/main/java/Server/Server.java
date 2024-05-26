@@ -22,12 +22,6 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 System.out.println("\033[32mA new client connected :)\033[0m");
-//
-//            BufferedReader socketInput = new BufferedReader(new InputStreamReader(socket.getInputStream())); //reads from socket input stream
-//            String input = socketInput.readLine();
-//            PrintWriter socketOutput = new PrintWriter(socket.getOutputStream(), true); //sends to the socket output stream
-//            socketOutput.println("[SERVER]: " + input); // it sends this message to socket
-
 
 
                 DataInputStream in = new DataInputStream(socket.getInputStream());
