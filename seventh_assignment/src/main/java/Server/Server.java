@@ -2,6 +2,7 @@ package Server;
 
 
 import Client.ClientHandler;
+import Client.SharingMessage;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -27,7 +28,8 @@ public class Server {
                 DataInputStream in = new DataInputStream(socket.getInputStream());
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-                new Thread(new ServerHandler(in)).start();
+                new Thread(new ServerHandler(socket)).start();
+                new Thread(new SharingMessage(socket)).start();
 
 
 //                System.out.println("dddddddddddddddddddddd");

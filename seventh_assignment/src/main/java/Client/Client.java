@@ -20,8 +20,16 @@ public class Client {
         System.out.println("\033[32mConnected to server :)\033[0m");
 
 
-        ClientHandler clientHandler = new ClientHandler(socket);
-        Server.threadPool.execute(clientHandler);
+
+//        new Thread(new ClientHandler(socket)).start();
+//        new Thread(new SharingMessage(socket)).start();
+
+        Server.threadPool.execute(new ClientHandler(socket));
+        Server.threadPool.execute(new SharingMessage(socket));
+
+//        while (true){
+//                new Thread(new SharingMessage(socket)).start();
+//        }
 
 
     }
