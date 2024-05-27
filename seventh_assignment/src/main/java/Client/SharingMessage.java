@@ -19,12 +19,9 @@ public class SharingMessage implements Runnable{
     public void run() {
 
         try {
-            System.out.println("sharingMessage 1");
             while (true){
-                System.out.println("sharingMessage 2");
-                System.out.println(in.readUTF());
-
-                System.out.println("sharingMessage 3");
+                String comeFromServer = in.readUTF();
+                System.out.println(comeFromServer);
             }
         } catch (IOException e) {
             e.printStackTrace();

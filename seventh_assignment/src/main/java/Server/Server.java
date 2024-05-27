@@ -7,6 +7,7 @@ import Client.SharingMessage;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors;
 public class Server {
     private static int port = 4900;
     public static ExecutorService threadPool = Executors.newFixedThreadPool(8);
+    public static ArrayList<Socket> socketArrayList = new ArrayList<Socket>();
 
     public static void main(String[] args) {
         try {
@@ -24,14 +26,8 @@ public class Server {
                 Socket socket = serverSocket.accept();
                 System.out.println("\033[32mA new client connected :)\033[0m");
 
-
-                DataInputStream in = new DataInputStream(socket.getInputStream());
-                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-
+                Server.socketArrayList.add(socket);
                 new Thread(new ServerHandler(socket)).start();
-
-
-//                System.out.println("dddddddddddddddddddddd");
             }
 
         } catch (IOException e) {

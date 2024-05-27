@@ -20,17 +20,18 @@ public class ServerHandler implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println("serverHandler 1");
             while (true) {
-                System.out.println("serverHandler 2");
                 String comeFromClients = in.readUTF();
                 System.out.println(comeFromClients);
 
-                System.out.println("serverHandler 3");
-                out.writeUTF(comeFromClients);
-
-                System.out.println("serverHandler 4");
-
+                //send to clients
+                for (Socket key : Server.socketArrayList) {
+                    System.out.println("howManyTime");
+                    if (key != socket) {
+                    DataOutputStream outPrime = new DataOutputStream(key.getOutputStream());
+                    outPrime.writeUTF(comeFromClients);
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,5 +1,7 @@
 package Client;
 
+import Server.Server;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -28,13 +30,13 @@ public class ClientHandler implements Runnable {
         try {
             while (true) {
                 String clientInput = new BufferedReader(new InputStreamReader(System.in)).readLine();
-//                String clientInput = scanner.nextLine();
                 out.writeUTF("\033[35m" + name + ":\033[0m " + clientInput);
+
+
 
             }
         } catch (IOException e) {
             e.printStackTrace();
-
 
         }
     }

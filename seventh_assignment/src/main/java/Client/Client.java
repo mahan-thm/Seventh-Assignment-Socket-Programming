@@ -21,11 +21,10 @@ public class Client {
 
 
 
-//        new Thread(new ClientHandler(socket)).start();
-//        new Thread(new SharingMessage(socket)).start();
 
         Server.threadPool.execute(new ClientHandler(socket));
-        Server.threadPool.execute(new SharingMessage(socket));
+
+        new Thread(new SharingMessage(socket)).start();
 
 //        while (true){
 //                new Thread(new SharingMessage(socket)).start();
