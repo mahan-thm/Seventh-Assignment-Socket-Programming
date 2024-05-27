@@ -1,22 +1,19 @@
 package Client;
 
-import Server.Server;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class ClientHandler implements Runnable {
     private String name;
-    private Socket socket;
     private DataOutputStream out;
-    private int port = 4900;
-    private DataInputStream in;
     Scanner scanner = new Scanner(System.in);
 
 
     public ClientHandler(Socket socket) throws IOException {
-        this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
     }
 
@@ -31,9 +28,6 @@ public class ClientHandler implements Runnable {
             while (true) {
                 String clientInput = new BufferedReader(new InputStreamReader(System.in)).readLine();
                 out.writeUTF("\033[35m" + name + ":\033[0m " + clientInput);
-
-
-
             }
         } catch (IOException e) {
             e.printStackTrace();
