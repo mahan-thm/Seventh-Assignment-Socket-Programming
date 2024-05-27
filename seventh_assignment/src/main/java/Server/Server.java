@@ -29,7 +29,6 @@ public class Server {
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
                 new Thread(new ServerHandler(socket)).start();
-                new Thread(new SharingMessage(socket)).start();
 
 
 //                System.out.println("dddddddddddddddddddddd");
