@@ -19,15 +19,22 @@ public class ServerHandler implements Runnable {
         try {
             while (true) {
                 String comeFromClients = in.readUTF();
-                System.out.println(comeFromClients);
-
-                //send to clients except himself
-                for (Socket key : Server.socketArrayList) {
-                    if (key != socket) {
-                    DataOutputStream outPrime = new DataOutputStream(key.getOutputStream());
-                    outPrime.writeUTF(comeFromClients);
+                if (comeFromClients.equals("add socket")) {
+                    Server.groupChatClients.add(socket);
+                } else if (comeFromClients.equals("remove socket")) {
+                    Server.groupChatClients.remove(socket);
+                } else {
+                    System.out.println(comeFromClients);
+                    System.out.println(Server.groupChatClients.size());
+                    //send to clients except himself
+                    for (Socket key : Server.groupChatClients) {
+                        if (key != socket) {
+                            DataOutputStream outPrime = new DataOutputStream(key.getOutputStream());
+                            outPrime.writeUTF(comeFromClients);
+                        }
                     }
                 }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
