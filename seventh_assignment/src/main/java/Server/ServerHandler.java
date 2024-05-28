@@ -25,7 +25,6 @@ public class ServerHandler implements Runnable {
                     Server.groupChatClients.remove(socket);
                 } else {
                     System.out.println(comeFromClients);
-                    System.out.println(Server.groupChatClients.size());
                     //send to clients except himself
                     for (Socket key : Server.groupChatClients) {
                         if (key != socket) {

@@ -21,9 +21,6 @@ public class Server {
             while (true) {
                 Socket socket = serverSocket.accept();
                 System.out.println("\033[32mA new client connected :)\033[0m");
-
-//                groupChatClients.add(socket);
-
                 new Thread(new ServerHandler(socket)).start();
             }
         } catch (IOException e) {

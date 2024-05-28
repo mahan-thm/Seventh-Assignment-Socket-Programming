@@ -31,8 +31,6 @@ public class ClientHandler implements Runnable {
             if (Objects.equals(order, "1")) {
                 try {
                     out.writeUTF("add socket");
-                    System.out.println(socket);
-                    System.out.println(Server.groupChatClients);
                     groupChat();
                     out.writeUTF("remove socket");
                     System.out.println("\033[34m1. Join the group chat.\n2. Download a file from server.\n3. Exit.\033[0m");
@@ -67,12 +65,12 @@ public class ClientHandler implements Runnable {
 
 
     public void download() {
-        System.out.println("\033[34mHere is the name of files you can download:\033[0m");
+        System.out.println("\033[34mHere is the name of files you can download:\n\033[0m");
         File directory = new File("G:\\UNI\\AP\\Assignments\\Seventh-Assignment-Socket-Programming\\seventh_assignment\\src\\main\\java\\Server\\data");
         File[] files = directory.listFiles();
 
         for (File file : files) {
-            System.out.println(file.getName());
+            System.out.println("\033[37m" + file.getName() + "\033[0m");
         }
 
         System.out.println("\033[34mType the name of file you want to download.\033[0m");
