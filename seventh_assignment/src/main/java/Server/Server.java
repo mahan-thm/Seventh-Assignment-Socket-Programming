@@ -14,6 +14,12 @@ public class Server {
     public static ArrayList<Socket> socketArrayList = new ArrayList<Socket>();
 
     public static void main(String[] args) {
+
+
+
+
+
+
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("\033[34mServer created :) waiting for client connection...\033[0m");
